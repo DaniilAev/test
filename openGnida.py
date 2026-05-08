@@ -1,11 +1,13 @@
 def main():
-    volume=32
-    print(f"Начато заполнение файлами по {volume} Мб.")
+    volume=32*1024*1024
     while True:
+        print(f"Начато заполнение файлами по {volume} байт.")
         volume_filler(volume)
         if volume == 1:
             break
         volume //= 2
+    print('Готово.')
+
 
 def volume_filler(file_size: int):
     number = 1
