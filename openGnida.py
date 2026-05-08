@@ -1,14 +1,14 @@
 def main():
     volume=32
+    print(f"Начато заполнение файлами по {volume} Мб.")
     while True:
         volume_filler(volume)
         if volume == 1:
             break
         volume //= 2
 
-def volume_filler(file_size: int) -> bool:
+def volume_filler(file_size: int):
     number = 1
-    is_exception_raised = False
     for attempt in range(5):
         try:
             while True:
@@ -16,9 +16,8 @@ def volume_filler(file_size: int) -> bool:
                     file.write(b'\xFF'*file_size)
                     file.close()
                 number += 1
-        except OSError:
-            is_exception_raised = True
-    return is_exception_raised
+        except:
+            pass
 
 
 confirm = False
