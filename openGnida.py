@@ -3,13 +3,30 @@ import shutil
 
 def main():
     volume=32*1024*1024
-    os.makedirs('payload',exist_ok=True)
+
+    print("Создаётся папка для нагрузочных файлов.")
+
+    try:
+        os.makedirs('payload',exist_ok=True)
+
+    except Exception as e:
+        print("Не удалось создать папку для нагрузочных файлов. Скрипт будет остановлен")
+        print(f"Ошибка: {Exception}")
+        exit(1)
+
     while True:
         print(f"Начато заполнение файлами по {volume} байт.")
         volume_filler(volume)
         if volume == 1:
             break
         volume //= 2
+
+    try:
+        shutil.rmtree('payload')
+
+    except:
+        pass
+
     print('Готово.')
 
 
