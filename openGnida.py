@@ -1,18 +1,22 @@
 import os
 import shutil
 
+
 def main():
     volume=32*1024*1024
 
-    print("Создаётся папка для нагрузочных файлов.")
+    print("Создаётся директория для нагрузочных файлов.")
 
     try:
         os.makedirs('payload',exist_ok=True)
 
-    except Exception as e:
-        print("Не удалось создать папку для нагрузочных файлов. Скрипт будет остановлен")
-        print(f"Ошибка: {Exception}")
+    except Exception as e1:
+        print("Не удалось создать директорию для нагрузочных файлов.")
+        print(f"Ошибка: {e1}")
+        print("Скрипт будет остановлен.")
         exit(1)
+
+    print("Директория создана.")
 
     while True:
         print(f"Начато заполнение файлами по {volume} байт.")
@@ -24,10 +28,17 @@ def main():
     try:
         shutil.rmtree('payload')
 
-    except:
-        pass
+    except Exception as e2:
+        print("Не удалось удалить директорию для нагрузочных файлов.\nСкрипт будет остановлен.\n ")
+        print(f"Ошибка: {e2}")
+        print("Убедитесь, что в текущей директории разрешено удаление файлов.")
+        print("Скрипт будет остановлен.")
+        exit(1)
+
+    print("Директория для нагрузочных файлов удалена, место освобождено.")
 
     print('Готово.')
+    exit(0)
 
 
 def volume_filler(file_size: int):
